@@ -3,6 +3,24 @@ import {
     BrowserRouter as Router,
   } from "react-router-dom";
 function Navbar(){
+    {/*form start*/}
+    const [state, setState] = useState({
+        email: ""
+      });
+    
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setState((prevProps) => ({
+          ...prevProps,
+          [name]: value
+        }));
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(state);
+        
+      };{/*form end*/}
     return(
         <div>
             <ul>
@@ -27,6 +45,21 @@ function Navbar(){
                 <li>
                     <Link to='/Events'>Events</Link>
                 </li>
+        <form onSubmit={handleSubmit}> {/*form start*/}
+                <div className="form-control">
+                <label>Email</label>
+                <input
+                    type="text"
+                    name="email"
+                    value={state.email}
+                    onChange={handleInputChange}
+                />
+                </div>
+                <div className="form-control">
+                <label></label>
+                <button type="submit" >Login</button>
+                </div>
+            </form>{/*form end*/}
             </ul>
 
         </div>
